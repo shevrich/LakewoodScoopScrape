@@ -1,0 +1,22 @@
+﻿@using LakewoodScoop.Api;
+@using LakewoodScoopScrape.Models
+@model ScoopViewModel
+
+@foreach (LkwdScoopItem item in Model.Items)
+{
+    var split = item.Text.Split(' ');
+    var readMore = split[split.Length - 3] + " " + split[split.Length - 2] + " " + split[split.Length - 1];
+    <div class="container">
+        <div class="col-md-7 col-md-offset-2">
+            <h2><a href="@item.Url" target="_blank">@item.Title</a> </h2>
+
+            <small>@item.DatePosted</small>
+            <p>
+                <img style="float:left" src="@item.Image"/>
+                
+                @item.Text.Remove(item.Text.Length - 11)
+                <a href="@item.Url" target="_blank">@readMore</a>
+            </p>
+        </div>
+    </div>
+}
